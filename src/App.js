@@ -13,7 +13,7 @@ import { playMagicalSound, playProgressSound } from "./utils/sounds";
 
 // API Configuration - Uses environment variable
 // Fallback to empty string if not set, will be handled by UI state
-const ENV_API_KEY = process.env.REACT_APP_OPENROUTER_API_KEY || '';
+const ENV_API_KEY = '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';
 const API_URL = 'https://openrouter.ai/api/v1/chat/completions';
 const MODEL = 'x-ai/grok-code-fast-1';
 
