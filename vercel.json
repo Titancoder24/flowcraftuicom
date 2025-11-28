@@ -1,8 +1,7 @@
 {
   "version": 2,
   "build": {
-    "env": {
-      "REACT_APP_OPENROUTER_API_KEY": "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"
+    
     }
   },
   "builds": [
