@@ -88,6 +88,20 @@ function App() {
     const [researchData, setResearchData] = useState({ user: null, competitor: null });
     const [isResearching, setIsResearching] = useState(false);
 
+    // Loading State
+    const [loadingQuote, setLoadingQuote] = useState('');
+
+    const quotes = [
+        "Design is not just what it looks like and feels like. Design is how it works. - Steve Jobs",
+        "Simplicity is the ultimate sophistication. - Leonardo da Vinci",
+        "Good design is obvious. Great design is transparent. - Joe Sparano",
+        "Styles come and go. Good design is a language, not a style. - Massimo Vignelli",
+        "Digital design is like painting, except the paint never dries. - Neville Brody",
+        "The details are not the details. They make the design. - Charles Eames",
+        "Every great design begins with an even better story. - Lorinda Mamo",
+        "Design is intelligence made visible. - Alina Wheeler"
+    ];
+
     // Theme State
     const [darkMode, setDarkMode] = useState(true); // Default to dark mode for the landing page vibe
 
@@ -643,6 +657,7 @@ IMPORTANT INSTRUCTIONS:
         setIsGenerating(true);
         setProgress(10);
         setCurrentPhase('Analyzing your vision...');
+        setLoadingQuote(quotes[Math.floor(Math.random() * quotes.length)]);
 
         // Play magical sound effect
         playMagicalSound();
@@ -1435,17 +1450,29 @@ Create ${screenCount} key screens. Calculate logical x/y positions.`;
                             </div>
 
                             {/* Loading UI */}
-                            <div className="max-w-4xl mx-auto px-6 text-center relative z-10">
-                                <h2 className={`text-5xl font-black mb-8 ${darkMode ? 'text-white' : 'text-black'}`}>AI is Architecting</h2>
-                                <p className={`text-xl mb-8 ${darkMode ? 'text-gray-400' : 'text-gray-600'}`}>{currentPhase}</p>
-                                <div className="max-w-2xl mx-auto">
-                                    <div className={`rounded-full h-4 mb-6 ${darkMode ? 'bg-white/10' : 'bg-gray-200'}`}>
+                            <div className="max-w-4xl mx-auto px-6 text-center relative z-10 flex flex-col items-center">
+                                <h2 className={`text-6xl md:text-8xl font-black mb-6 tracking-tighter ${darkMode ? 'text-white' : 'text-black'}`}>
+                                    AI is Architecting <span className="text-transparent bg-clip-text bg-gradient-to-r from-pink-500 to-indigo-500">{Math.round(progress)}%</span>
+                                </h2>
+
+                                <p className={`text-2xl md:text-3xl mb-12 font-light ${darkMode ? 'text-gray-300' : 'text-gray-600'}`}>
+                                    {currentPhase}
+                                </p>
+
+                                <div className="max-w-xl w-full mb-12">
+                                    <div className={`rounded-full h-2 mb-4 overflow-hidden ${darkMode ? 'bg-white/10' : 'bg-gray-100'}`}>
                                         <div
-                                            className={`h-4 rounded-full transition-all duration-1000 shadow-lg ${darkMode ? 'bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500' : 'bg-black'}`}
+                                            className={`h-full transition-all duration-300 ease-out shadow-[0_0_20px_rgba(236,72,153,0.5)] ${darkMode ? 'bg-gradient-to-r from-pink-500 via-purple-500 to-indigo-500' : 'bg-black'}`}
                                             style={{ width: `${progress}%` }}
                                         ></div>
                                     </div>
-                                    <p className={`text-sm font-bold ${darkMode ? 'text-gray-500' : 'text-gray-400'}`}>{Math.round(progress)}%</p>
+                                </div>
+
+                                {/* Inspirational Quote */}
+                                <div className="animate-in fade-in slide-in-from-bottom-4 duration-1000 delay-300">
+                                    <p className={`text-lg italic font-medium opacity-60 max-w-lg mx-auto leading-relaxed ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
+                                        "{loadingQuote}"
+                                    </p>
                                 </div>
                             </div>
                         </div>
